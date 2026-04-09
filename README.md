@@ -1,4 +1,4 @@
-# AIML Training Program – Feb 2026
+# AIML Training Program – Feb 2026  
 ## IIIT Hyderabad
 
 This repository contains all lab work, assignments, and assessments completed as part of the AIML Training Program conducted by IIIT Hyderabad.
@@ -6,33 +6,37 @@ This repository contains all lab work, assignments, and assessments completed as
 ---
 
 ## Program Focus Areas
-- Machine Learning
-- Feature Engineering
-- NLP
-- Computer Vision
-- Model Evaluation
-- Data Visualization
+- Machine Learning  
+- Feature Engineering  
+- NLP  
+- Computer Vision  
+- Data Augmentation  
+- Data Transformation  
+- Model Evaluation  
+- Data Visualization  
 
 ---
 
 ## Repository Structure
 
 | Lab | Topic | Status |
-|-----|-------|--------|
+|-----|------|--------|
 | Lab 1 | Feature Extraction (Text & MNIST) | ✅ Completed |
-| Lab 2 | TBD | ⏳ Upcoming |
+| Lab 2 | Machine Learning Terms | ✅ Completed |
+| Lab 3 | Data Augmentation | ✅ Completed |
+| Lab 4 | Transforming Data | ✅ Completed |
 
 ---
 
 ## Technologies Used
-- Python
-- NumPy
-- Pandas
-- Matplotlib
-- Plotly
-- NLTK
-- Keras / TensorFlow
-- Wikipedia API
+- Python  
+- NumPy  
+- Pandas  
+- Matplotlib  
+- Plotly  
+- NLTK  
+- Keras / TensorFlow  
+- Wikipedia API  
 
 ---
 
