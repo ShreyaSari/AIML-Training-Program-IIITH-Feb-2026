@@ -1,12 +1,14 @@
-# AIML Module 3 – Lab 03
+# AIML Module 4 – Lab 01
 
-## Using K-Nearest Neighbors (KNN) for Text Classification
+## Perceptron and Gradient Descent
 
 ## Overview
 
-This lab explores the application of the **K-Nearest Neighbors (KNN)** algorithm for text classification using Natural Language Processing (NLP) techniques. The objective is to transform textual data into numerical representations and use KNN to classify documents into predefined categories.
+This lab introduces the **Perceptron Learning Algorithm**, one of the earliest supervised machine learning algorithms used for binary classification. The notebook demonstrates how a Perceptron learns a linear decision boundary by iteratively updating weights based on classification errors.
 
-The notebook demonstrates how different text preprocessing and vectorization techniques influence classification accuracy and overall model performance.
+The lab also explores the concept of **Gradient Descent**, a fundamental optimization technique used to minimize error functions and train machine learning models efficiently.
+
+Through visualization and experimentation, students gain practical understanding of linear separability, weight updates, decision boundaries, convergence behavior, and optimization methods.
 
 ---
 
@@ -14,157 +16,179 @@ The notebook demonstrates how different text preprocessing and vectorization tec
 
 The primary objectives of this lab are:
 
-* Understand text preprocessing techniques in NLP
-* Convert textual data into numerical feature vectors
-* Implement text classification using KNN
-* Compare Bag-of-Words (BoW) and TF-IDF approaches
-* Analyze the impact of feature extraction on model accuracy
-* Understand stemming and lemmatization concepts
-* Evaluate classification performance using machine learning metrics
+* Understand the fundamentals of the Perceptron algorithm
+* Learn how binary classification works
+* Understand linear separability in datasets
+* Implement the Perceptron learning rule
+* Visualize decision boundaries
+* Track training error during learning
+* Understand convergence of the Perceptron algorithm
+* Learn the basics of Gradient Descent optimization
+* Analyze how model parameters are updated iteratively
 
 ---
 
 ## Dataset
 
-The notebook utilizes text classification datasets such as:
+A small toy dataset is used for demonstration purposes.
 
-* Spam Detection Dataset
-* Review/Sentiment Dataset
+The dataset contains:
 
-These datasets are used to:
+* Two input features (x₁ and x₂)
+* Binary class labels (+1 and -1)
+* Linearly separable samples
 
-* Classify text into categories
-* Train and evaluate KNN models
-* Compare vectorization techniques
-* Analyze prediction accuracy
+The dataset is used to:
+
+* Train a Perceptron classifier
+* Visualize classification boundaries
+* Observe weight updates during training
+* Analyze model convergence
 
 ---
 
 ## Key Concepts Covered
 
-### 1. Text Preprocessing
+### 1. Perceptron
 
-Text preprocessing is a crucial step in NLP that cleans and standardizes raw text before model training.
+The Perceptron is one of the simplest supervised learning algorithms for binary classification.
 
-The preprocessing pipeline includes:
+It attempts to find a linear boundary that separates two classes.
 
-* Lowercasing text
-* Removing punctuation
-* Removing stopwords
-* Tokenization
-* Stemming
-* Lemmatization
-
-These techniques help reduce noise and improve model performance.
-
----
-
-### 2. Bag-of-Words (BoW)
-
-Bag-of-Words is a text representation technique that converts documents into numerical vectors based on word frequency.
-
-#### Process:
-
-1. Build a vocabulary of unique words.
-2. Count word occurrences in each document.
-3. Represent documents as frequency vectors.
-
-#### Advantages
-
-* Simple to implement
-* Computationally efficient
-
-#### Limitations
-
-* Ignores word order
-* Does not capture semantic meaning
-
----
-
-### 3. TF-IDF Vectorization
-
-TF-IDF (Term Frequency – Inverse Document Frequency) improves upon Bag-of-Words by assigning importance scores to words.
-
-#### Formula
+The Perceptron computes:
 
 ```text
-TF-IDF = TF × IDF
+Output = sign(w · x + b)
 ```
 
 Where:
 
-* **TF** = Frequency of a word in a document
-* **IDF** = Importance of the word across all documents
+* **w** = Weight vector
+* **x** = Input features
+* **b** = Bias term
 
-#### Benefits
+The output belongs to either:
 
-* Reduces the influence of common words
-* Highlights informative and discriminative terms
-* Often achieves better classification accuracy than BoW
-
----
-
-### 4. K-Nearest Neighbors (KNN)
-
-KNN is a supervised machine learning algorithm used for classification.
-
-#### Working Principle
-
-1. Calculate similarity or distance between samples.
-2. Identify the K nearest neighbors.
-3. Assign the majority class among the neighbors.
-
-#### Impact of K Value
-
-* Smaller K values may lead to overfitting.
-* Larger K values provide smoother decision boundaries.
-* Selecting an optimal K is important for achieving good performance.
+* +1 (Positive Class)
+* -1 (Negative Class)
 
 ---
 
-### 5. Stemming and Lemmatization
+### 2. Linear Separability
 
-#### Stemming
+A dataset is said to be linearly separable if a straight line (or hyperplane in higher dimensions) can separate samples from different classes.
 
-Reduces words to their root form by removing suffixes.
+Characteristics:
+
+* Positive and negative samples are separable by a single decision boundary.
+* Perceptron converges only when the dataset is linearly separable.
 
 Examples:
 
-```text
-running → run
-studies → studi
-```
-
-**Advantages**
-
-* Fast
-* Computationally inexpensive
-
-**Limitations**
-
-* May produce non-dictionary words
+* AND function → Linearly separable
+* OR function → Linearly separable
+* XOR function → Not linearly separable
 
 ---
 
-#### Lemmatization
+### 3. Perceptron Learning Rule
 
-Converts words to their dictionary base form while considering context.
+The Perceptron learns by updating its weights whenever it misclassifies a sample.
 
-Examples:
+Weight update equation:
 
 ```text
-running → run
-better → good
+w(new) = w(old) + ηyx
 ```
 
-**Advantages**
+Bias update equation:
 
-* More accurate
-* Preserves semantic meaning
+```text
+b(new) = b(old) + ηy
+```
 
-**Limitations**
+Where:
 
-* Computationally more expensive
+* **η** = Learning rate
+* **y** = Actual label
+* **x** = Input vector
+
+The objective is to reduce classification errors and correctly separate the classes.
+
+---
+
+### 4. Training Process
+
+The Perceptron training process follows these steps:
+
+1. Initialize weights to zero.
+2. Pass each sample through the model.
+3. Predict its class.
+4. Compare prediction with actual label.
+5. Update weights if misclassified.
+6. Repeat until convergence or maximum epochs are reached.
+
+This iterative learning process gradually improves classification performance.
+
+---
+
+### 5. Error Tracking
+
+Training error is monitored across multiple epochs.
+
+Benefits of error tracking:
+
+* Helps visualize learning progress.
+* Confirms convergence.
+* Shows whether the algorithm is improving over time.
+
+A decreasing error curve indicates successful learning.
+
+---
+
+### 6. Decision Boundary Visualization
+
+The trained weight vector defines a decision boundary.
+
+The notebook visualizes:
+
+* Positive samples
+* Negative samples
+* Learned separating line
+* Test samples
+
+This provides an intuitive understanding of how the Perceptron classifies data.
+
+---
+
+### 7. Gradient Descent
+
+Gradient Descent is an optimization algorithm used to minimize a loss function.
+
+The basic update rule is:
+
+```text
+θ = θ − α ∇J(θ)
+```
+
+Where:
+
+* **θ** = Model parameters
+* **α** = Learning rate
+* **∇J(θ)** = Gradient of the loss function
+
+Gradient Descent repeatedly moves parameters in the direction that reduces prediction error.
+
+---
+
+### 8. Convergence
+
+The Perceptron Convergence Theorem states:
+
+* If the dataset is linearly separable, the Perceptron will converge after a finite number of updates.
+* If the dataset is not linearly separable, convergence is not guaranteed.
+
+This concept explains why some classification problems are easy to solve while others require more advanced neural networks.
 
 ---
 
@@ -172,27 +196,27 @@ better → good
 
 Key observations from the experiments:
 
-* TF-IDF generally outperforms Bag-of-Words.
-* Common words contribute less useful information for classification.
-* Proper preprocessing improves prediction accuracy.
-* Smaller K values may overfit training data.
-* Larger K values often provide better generalization.
-* Lemmatization preserves semantic meaning better than stemming.
+* The Perceptron successfully learns linearly separable datasets.
+* Weight updates occur only when misclassifications are made.
+* Training error decreases as learning progresses.
+* Decision boundaries become more accurate after multiple epochs.
+* Gradient Descent provides a systematic way to minimize errors.
+* Non-linearly separable datasets cannot be solved using a single-layer Perceptron.
 
 ---
 
 ## Applications
 
-Text classification and NLP techniques are widely used in:
+Perceptrons and Gradient Descent form the foundation of many machine learning systems, including:
 
-* Spam Email Detection
-* Sentiment Analysis
-* Chatbots and Virtual Assistants
+* Neural Networks
+* Deep Learning Models
+* Image Classification
+* Speech Recognition
+* Natural Language Processing
 * Recommendation Systems
-* Search Engines
-* Document Categorization
 * Fraud Detection
-* Social Media Monitoring
+* Medical Diagnosis Systems
 
 ---
 
@@ -200,10 +224,8 @@ Text classification and NLP techniques are widely used in:
 
 * Python
 * NumPy
-* Pandas
 * Matplotlib
 * Scikit-learn
-* NLTK
 * Jupyter Notebook
 * Google Colab
 
@@ -212,35 +234,34 @@ Text classification and NLP techniques are widely used in:
 ## Project Workflow
 
 ```text
-Text Data
-    ↓
-Text Preprocessing
-    ↓
-Feature Extraction
- (BoW / TF-IDF)
-    ↓
-Train-Test Split
-    ↓
-KNN Model Training
-    ↓
-Prediction
-    ↓
-Performance Evaluation
+Dataset
+   ↓
+Initialize Weights
+   ↓
+Forward Prediction
+   ↓
+Check Classification Error
+   ↓
+Update Weights
+   ↓
+Repeat for Multiple Epochs
+   ↓
+Convergence
+   ↓
+Visualize Decision Boundary
 ```
 
 ---
 
 ## Conclusion
 
-This lab provides practical experience in applying **K-Nearest Neighbors (KNN)** to text classification problems using NLP techniques.
+This lab provides a practical introduction to the Perceptron Learning Algorithm and Gradient Descent. By training a Perceptron on a linearly separable dataset, we observe how weights are updated iteratively to reduce classification errors and create an effective decision boundary.
 
-By comparing **Bag-of-Words** and **TF-IDF** vectorization methods, we gain valuable insights into how feature extraction influences machine learning performance. The experiments also highlight the importance of preprocessing techniques such as stemming and lemmatization for improving text quality and classification accuracy.
-
-Understanding these concepts is essential for building efficient NLP systems and real-world text mining applications.
+The experiments highlight the importance of linear separability, convergence, and optimization in machine learning. Understanding these concepts forms the foundation for studying more advanced neural networks and deep learning architectures.
 
 ---
 
 ## Author
 
 **Shreya Sari**
-*AIML Training Program – Module 3 Lab 03*
+*AIML Training Program – Module 4 Lab 01*
